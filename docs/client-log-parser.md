@@ -2,7 +2,7 @@
 title: Client Log Parser
 ---
 
-Parses the game's log file (`Client.txt`) and puts the useful portion of its contents into a standardized `jsonl|ndjson` format, each line is a JSON object. Each line will **always** contain 3 standardized fields and a selection of additional fields depending on the type of log entry. This file currently (`0.15.0`) should be treated as an **UNORDERED** collection of log entries. It is most likely to be chronologically ordered, but this is not guaranteed.
+Parses the game's log file (`Client.txt`) and puts the useful portion of its contents into a standardized `jsonl|ndjson` format, each line is a JSON object. Each line will **always** contain 3 standardized fields and a selection of additional fields depending on the type of log entry. Exported log files should be treated as an **UNORDERED** collection of log entries. They are most likely chronologically ordered, but this is not guaranteed.
 
 ## Example
 

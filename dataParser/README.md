@@ -1,5 +1,7 @@
 # Data Parser
 
+Install dependencies: `pip install -r requirements.txt` (see also [Development → Data pipeline](https://kvan7.github.io/Exiled-Exchange-2/development#data-pipeline)).
+
 See [main.py](./src/main.py) for the main entry point. This should be ran from the dataParser folder with the following command:
 
 ```bash

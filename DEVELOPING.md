@@ -1,71 +1,28 @@
-# How this works
+# Developing Exiled Exchange 2
 
-There are 2 main parts of the app:
+The canonical developer documentation lives in the **VitePress docs site** (also in `docs/`):
 
-1. renderer: this is the HTML/Javascript-based UI rendered within the Electron container. This runs Vue.js, a React-like Javascript framework for rendering front-end.
-2. main: includes the main app (written in Electron). Handles keyboard shortcuts, brings up the UI and overlays.
+- [Architecture](https://kvan7.github.io/Exiled-Exchange-2/architecture) — [`docs/architecture.md`](./docs/architecture.md)
+- [Development guide](https://kvan7.github.io/Exiled-Exchange-2/development) — [`docs/development.md`](./docs/development.md)
+- [Building for Linux (incl. Arch)](https://kvan7.github.io/Exiled-Exchange-2/building-linux) — [`docs/building-linux.md`](./docs/building-linux.md)
+- [Item capture from game](https://kvan7.github.io/Exiled-Exchange-2/item-capture) — [`docs/item-capture.md`](./docs/item-capture.md)
 
-Note that these 2 both depend on each other, and one cannot run without the other.
+## Quick start
 
-# How to develop
-
-The most up-to-date instructions can always be derived from CI:
-
-[.github/workflows/main.yml](https://github.com/Kvan7/exiled-exchange-2/blob/master/.github/workflows/main.yml)
-
-Here's what that looks like as of 2023-12-03.
+Matches CI (Node 24, `npm ci`):
 
 ```shell
 cd renderer
-npm install
+npm ci
 npm run make-index-files
 npm run dev
 
-# In a second shell
+# second terminal
 cd main
-npm install
+npm ci
 npm run dev
 ```
 
-## Formatting
+Build and package: see [Development → Building for production](./docs/development.md#building-for-production) or run `sh testUpdate.sh` after reading the script.
 
-```shell
-cd renderer
-npm run format
-```
-
-# How to build
-
-```shell
-cd renderer
-npm install
-npm run make-index-files
-npm run build
-
-cd ../main
-npm install
-npm run build
-# We want to sign with a distribution certificate to ensure other users can
-# install without errors
-CSC_NAME="Certificate name in Keychain" npm run package
-```
-
-# How to release a build
-
-1. Commit all changes
-2. Bump version in `main/package.json`
-3. `npm i` in renderer & main (update `package-lock.json` with new version)
-4. `npm run build` in renderer & main
-5. Stage & commit bumped version
-6. `git push`
-7. `git tag vX.X.X`
-8. `git push origin vX.X.X`
-9. Open release page, create release with tag & title as text of tag & save as draft
-
-# How to build yourself
-
-```shell
-sh testUpdate.sh
-```
-
-Read the contents of `testUpdate.sh` to understand what it does. Running random scripts from the internet is not recommended so you really should read the code before running it.
+Release process: see [Development → Release process](./docs/development.md#release-process).

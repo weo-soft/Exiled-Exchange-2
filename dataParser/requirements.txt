@@ -1,0 +1,7 @@
+pandas
+numpy
+tqdm
+cloudscraper
+requests
+murmurhash2
+pytest

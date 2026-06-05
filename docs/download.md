@@ -20,6 +20,8 @@ to the developer, downloading from them may be unsafe or malicious.
 
 Latest version is <span class="bg-gray-100 border rounded px-1">{{ theme.appVersion }}</span>
 
+To build from source on Linux or Arch, see [Building for Linux](/building-linux).
+
 *The app is unsigned, which means you'll have to bypass security
 warnings on Windows and [macOS](https://support.apple.com/en-us/HT202491#openanyway) to open it.{:.text-sm}
 
