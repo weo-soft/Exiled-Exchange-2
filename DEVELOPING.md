@@ -6,6 +6,7 @@ The canonical developer documentation lives in the **VitePress docs site** (also
 - [Development guide](https://kvan7.github.io/Exiled-Exchange-2/development) — [`docs/development.md`](./docs/development.md)
 - [Building for Linux (incl. Arch)](https://kvan7.github.io/Exiled-Exchange-2/building-linux) — [`docs/building-linux.md`](./docs/building-linux.md)
 - [Item capture from game](https://kvan7.github.io/Exiled-Exchange-2/item-capture) — [`docs/item-capture.md`](./docs/item-capture.md)
+- [Clipboard capture improvements (design)](./docs/clipboard-capture-improvements/README.md) — serialized sessions, event-driven watcher plan
 
 ## Quick start
 
