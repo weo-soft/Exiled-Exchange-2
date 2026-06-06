@@ -92,7 +92,8 @@ export type IpcEvent =
   | IpcConfigChanged
   | IpcUserAction
   | IpcWriteToFile
-  | IpcReparseLog;
+  | IpcReparseLog
+  | IpcClientLogMessage;
 
 export type IpcEventPayload<
   Name extends IpcEvent["name"],
@@ -199,6 +200,13 @@ type IpcGameLog = Event<
 >;
 
 type IpcReparseLog = Event<"CLIENT->MAIN::re-parse-log">;
+
+type IpcClientLogMessage = Event<
+  "CLIENT->MAIN::log-message",
+  {
+    message: string;
+  }
+>;
 
 type IpcUpdaterState = Event<"MAIN->CLIENT::updater-state", UpdateInfo>;
 

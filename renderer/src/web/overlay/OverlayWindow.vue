@@ -376,9 +376,12 @@ export default defineComponent({
       handleBackgroundClick,
       isVisible,
       overlayKey: computed(() => AppConfig().overlayKey),
-      get showLogs() {
-        return !active.value && AppConfig().logKeys;
-      },
+      showLogs: computed(() => {
+        if (AppConfig().logKeys) return true;
+        return /\[ClipboardPoller\]|\[Shortcuts\]|\[PriceCheck\]/.test(
+          Host.logs.value,
+        );
+      }),
       logs: computed(() => sliceLastLines(Host.logs.value, 11)),
       showEditingNotification: computed(
         () => !active.value && showEditingNotification.value,

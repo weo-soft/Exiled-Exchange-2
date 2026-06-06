@@ -41,10 +41,15 @@ port_open() {
   node -e "
     const net = require('net');
     const port = Number(process.argv[1]);
-    const s = net.connect(port, '127.0.0.1', () => { s.end(); process.exit(0); });
-    s.setTimeout(500);
-    s.on('timeout', () => { s.destroy(); process.exit(1); });
-    s.on('error', () => process.exit(1));
+    const hosts = ['127.0.0.1', '::1'];
+    function tryHost(i) {
+      if (i >= hosts.length) return process.exit(1);
+      const s = net.connect(port, hosts[i], () => { s.end(); process.exit(0); });
+      s.setTimeout(500);
+      s.on('timeout', () => { s.destroy(); tryHost(i + 1); });
+      s.on('error', () => tryHost(i + 1));
+    }
+    tryHost(0);
   " "$1"
 }
 

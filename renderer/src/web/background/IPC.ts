@@ -43,6 +43,13 @@ class HostTransport {
     this.socket.send(JSON.stringify(event));
   }
 
+  log(message: string) {
+    this.sendEvent({
+      name: "CLIENT->MAIN::log-message",
+      payload: { message },
+    });
+  }
+
   onEvent<Name extends IpcEvent["name"]>(
     name: Name,
     cb: (payload: IpcEventPayload<Name>) => void,

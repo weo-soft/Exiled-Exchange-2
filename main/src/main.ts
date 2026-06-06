@@ -101,6 +101,9 @@ let tray: AppTray;
           gameConfig,
           eventPipe,
         );
+        eventPipe.onEventAnyClient("CLIENT->MAIN::log-message", ({ message }) => {
+          logger.write(message);
+        });
         eventPipe.onEventAnyClient(
           "CLIENT->MAIN::update-host-config",
           (cfg) => {

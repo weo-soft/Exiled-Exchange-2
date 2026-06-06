@@ -307,6 +307,14 @@ export default defineComponent({
       if (e.target !== "price-check") return;
       performance.mark("price-check-event");
 
+      const clickSide =
+        e.position.x > window.screenX + window.innerWidth / 2
+          ? "inventory"
+          : "stash";
+      Host.log(
+        `info [PriceCheck] Received capture at (${e.position.x}, ${e.position.y}), side=${clickSide}, focusOverlay=${e.focusOverlay}, ${e.clipboard.length} chars.`,
+      );
+
       if (Host.isElectron && !e.focusOverlay) {
         // everything in CSS pixels
         const width = 28.75 * AppConfig().fontSize;
@@ -344,7 +352,13 @@ export default defineComponent({
       });
 
       if (item.value.isOk()) {
+        const parsed = item.value.value;
+        Host.log(
+          `info [PriceCheck] Parsed ${parsed.info.name} (${parsed.rarity}, ${parsed.category}).`,
+        );
         queuePricesFetch();
+      } else {
+        Host.log(`warn [PriceCheck] Parse failed: ${item.value.error.name}.`);
       }
       performance.mark("price-check-event-end");
     });
